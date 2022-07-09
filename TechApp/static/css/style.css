@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(75, 74, 74);
+    color: antiquewhite;
+}
+
+.form-control {
+    background-color: rgb(177, 168, 168);
+}
+
+.jumbo-color {
+    background-color: rgb(83, 81, 81);
+}
+
+.blog-post {
+    color:rgb(240, 205, 6) ;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+
+.blog-post-meta {
+    font-size: 25px;
+    color: white;
+}
+
+.author {
+    color:rgb(240, 205, 6);
+    text-transform: capitalize;
+    margin-left: 5px;
+}
+
+#bgdark {
+    background-color: rgb(75, 74, 74);
+}

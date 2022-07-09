@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Tech-Blog | Home</title>
+{% endblock  %}
+{% block js %}
+<script>
+  let previews = document.getElementsByClassName("preview");
+  Array.from(previews).forEach((element) =>{
+    element.innerHTML = element.innerText;
+  })
+</script>
+{% endblock %}
+{% block content %}
+  <div class="container col-sm-10 my-4">
+    {% for p in Post %}
+    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 blog-post">Artical By: {{p.author}}</strong>
+          <h3 class="mb-0 text-primary">{{p.title}}</h3>
+          <div class="mb-1 text-muted">{{p.date}}</div>
+          <p class="card-text mb-auto"><div class="preview">{{p.desc|safe|truncatechars:250}}</div></p>
+          <div class="my-2">
+            <a href="{% url 'blogpost' p.slug %}"  role="button" class="btn btn-primary">Continue reading</a>
+          </div>          
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+{% endblock  %}

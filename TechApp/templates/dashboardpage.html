@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Tech-Blog | Dashboard</title>
+{% endblock  %}
+
+{% block side %}
+    <div class="col-sm-3 mt-3 text-center">
+     <h2 class="my-5">Author Profile</h2>
+      <h4 class="text-warning text-capitalize">Name: {{user}}</h4>
+
+      
+    </div>
+{% endblock side %}
+
+{% block content %}
+<div class="container col-sm-9 mt-5">
+    <h3 class="">Dashboard Page</h3>
+    <a href="{% url 'addpost'  %}" class="btn btn-success">Add Post</a>
+    <a href="{% url 'changepassword' %}" class="btn btn-warning">Reset Password</a>
+    <a href="{% url 'forgetpassword' %}" class="btn btn-danger">Forget Password</a>
+  <h4 class="text-center alert-info mt-3">Show Post Information</h4>
+   {% if post %}
+    <table class="table table-hover bg-light">
+     <thead>
+      <tr class="text-center">
+        <th scope="col" style="width:2%">ID</th>
+        <th scope="col" style="width:12%">TITLE</th>
+        <th scope="col" style="width:11%">SUBJECT</th>
+        <th scope="col" style="width:25%">DESCRIPTION</th>
+        <th scope="col" style="width:0%">AUTHOR</th>
+        <th scope="col" style="width:15%">ACTION</th>
+      </tr>
+     </thead>
+     <tbody>
+       {% for post in post %}
+        <tr>
+         <th scope="row">{{post.id}}</th>
+         <td>{{post.title}}</td>
+         <td>{{post.subject}}</td>
+         <td>{{post.desc|truncatechars:100}}</td>
+         <td>{{post.author}}</td>
+         <td class="text-center">
+           <a href="{% url 'editpost' post.id %}" class="btn btn-warning btn-sm">Edit</a>
+           
+           <form action ="{% url 'deletepost' post.id %}" method="POST" class="d-inline">
+            {% csrf_token %}
+             <input type="submit" class="btn btn-danger btn-sm mt-1" value="Delete">
+           </form>
+          
+         </td>
+        </tr>
+        {% endfor %}
+     </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock  %}
